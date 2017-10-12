@@ -8,8 +8,8 @@ namespace TestAspNet.Client
     {
         private static void Main(string[] args)
         {
-            const string ASPNETCORE = "http://localhost:5001";
-            const string ASPNETSTANDARD = "http://localhost:5002";
+            const string ASPNETCORE = "http://testcore.DOMINIO.com.br";
+            const string ASPNETSTANDARD = "http://teststandard.DOMINIO.com.br";
 
             try
             {
@@ -28,7 +28,9 @@ namespace TestAspNet.Client
                         break;
                 }
 
-                Console.WriteLine();
+                var startTime = DateTime.Now;
+
+                Console.WriteLine($"\nStart time: {(DateTime.Now - startTime)}");
                 Console.WriteLine("Processing...");
                 Console.WriteLine();
 
@@ -36,21 +38,21 @@ namespace TestAspNet.Client
 
                 for (var index = 0; index < 100; index++)
                 {
+                    var currentItemStartTime = DateTime.Now;
                     var result = client.GetAsync("api/customers").GetAwaiter().GetResult();
-                    Console.WriteLine($"index: {index}, status: {result.StatusCode}");
+                    Console.WriteLine($"index: {index}, status: {result.StatusCode}, time: {(DateTime.Now - currentItemStartTime).TotalMilliseconds} ms");
                 }
+
+                Console.WriteLine($"\nElapsed time: {(DateTime.Now - startTime):g}");
             }
             catch (Exception e)
             {
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("ERROR");
+                Console.WriteLine("\n\nERROR");
                 Console.WriteLine(e);
             }
             finally
             {
-                Console.WriteLine();
-                Console.Write("Process terminated! Press ENTER to exit: ");
+                Console.Write("\nProcess terminated! Press ENTER to exit: ");
                 Console.ReadLine();
             }
         }
