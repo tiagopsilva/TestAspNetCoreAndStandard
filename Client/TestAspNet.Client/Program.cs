@@ -8,8 +8,8 @@ namespace TestAspNet.Client
     {
         private static void Main(string[] args)
         {
-            const string ASPNETCORE = "http://testcore.DOMINIO.com.br";
-            const string ASPNETSTANDARD = "http://teststandard.DOMINIO.com.br";
+            const string ASPNETCORE = "http://testcore.DOMAIN.com.br";
+            const string ASPNETSTANDARD = "http://teststandard.DOMAIN.com.br";
 
             try
             {
